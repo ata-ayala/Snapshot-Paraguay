@@ -1,0 +1,122 @@
+```css
+/* =========================================
+   1. Reset básico
+   ========================================= */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Quitar padding/margen del contenedor en layout full */
+.page-layout-full main.content,
+.page-layout-full .content,
+.page-layout-full .page-columns,
+.page-layout-full .column-page {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+}
+
+/* =========================================
+   2. Navbar fija arriba, transparente y con texto blanco
+   ========================================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: transparent !important;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: #ffffff !important;
+  text-shadow: 0 0 6px rgba(0,0,0,0.6);
+}
+
+/* "Snapshot Paraguay" en bold y un poco más grande */
+.navbar .navbar-brand {
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+/* Navbar cuando estás fuera del hero */
+.navbar.scrolled {
+  background-color: rgba(0,0,0,0.85) !important;
+  backdrop-filter: blur(6px);
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* Mantener texto blanco aun en scrolled */
+.navbar.scrolled .navbar-brand,
+.navbar.scrolled .navbar-nav .nav-link {
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+/* =========================================
+   3. HERO: imagen de fondo a pantalla completa
+   ========================================= */
+.hero {
+  height: 100vh;         /* ocupa todo el alto de la pantalla */
+  width: 100vw;          /* ocupa todo el ancho */
+  background-image: url("images/hero_paraguay.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+
+  /* truco para salir del contenedor centrado y cubrir izq/der */
+  margin-left: calc(50% - 50vw);
+  margin-top: -60px;   /* para que arranque detrás del menú */
+}
+
+/* Ajuste de desplazamiento para secciones con el menú fijo */
+#sobre-proyecto,
+#protocolo,
+#sobre,
+#contacto {
+  scroll-margin-top: 80px;  /* ajustá si querés más/menos espacio debajo del menú */
+}
+
+/* ============================
+  4. Sobre el proyecto: layout texto + imagen
+   ============================ */
+
+.sobre-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;   /* 👈 CENTRA verticalmente texto + imagen */
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+/* Texto ocupa un poco más que la imagen (≈55%) */
+.sobre-texto {
+  flex: 1 1 55%;
+}
+
+/* Imagen a la derecha, sin efectos especiales */
+.sobre-imagen {
+  flex: 1 1 45%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sobre-imagen img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive: en pantallas chicas, apilar */
+@media (max-width: 900px) {
+  .sobre-wrapper {
+    flex-direction: column;
+  }
+
+  .sobre-imagen {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,28 @@
+project:
+  type: website
+  resources:
+    - images
+
+website:
+  navbar:
+    title: "Snapshot Paraguay"
+    left: []
+    right:
+      - text: "Inicio"
+        href: "#inicio"
+      - text: "Sobre el proyecto"
+        href: "#sobre-proyecto"
+      - text: "Protocolo e inscripción"
+        href: "#protocolo"
+      - text: "Sobre"
+        href: "#sobre"
+      - text: "Contacto"
+        href: "#contacto"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    
+
+lang: es

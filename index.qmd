@@ -1,0 +1,94 @@
+---
+title: ""
+page-layout: full
+---
+
+<div class="hero" id="inicio"></div>
+
+
+::: {#sobre-proyecto}
+
+<div class="sobre-wrapper">
+
+  <div class="sobre-texto">
+  
+# Sobre el proyecto
+
+Desde 2019, el proyecto Snapshot se dedica al monitoreo global, estandarizado y de largo plazo de mamíferos terrestres de mediano y gran porte, mediante iniciativas colaborativas que integran grupos de investigación, instituciones, científicos/as y personas entusiastas de la naturaleza y la ciencia ciudadana.
+
+Esta red internacional no solo impulsa el avance en la generación y disponibilidad de datos abiertos a gran escala, sino que también fortalece y amplía la cooperación entre equipos de investigación a nivel nacional e internacional.
+
+Actualmente, el proyecto está presente en diversos países, incluyendo Estados Unidos, Japón, Europa y, desde 2025, también en América del Sur, con su expansión hacia Brasil y ahora hacia Paraguay.
+
+Con **Snapshot Paraguay** buscamos establecer un programa de monitoreo de largo plazo que permita evaluar la biodiversidad de mamíferos terrestres y comprender cómo cambian los ecosistemas en un contexto de transformaciones ambientales y climáticas aceleradas.
+
+A través de esta nueva red de colaboración, buscamos potenciar conexiones científicas, generar oportunidades para nuevas alianzas, involucrar más instituciones del país y fomentar investigaciones innovadoras que contribuyan a la conservación de la biodiversidad paraguaya.
+
+  </div>
+
+  <div class="sobre-imagen">
+  ![](images/snapshot_paraguay.png)
+  </div>
+
+</div>
+
+:::
+
+
+::: {#protocolo}
+# Protocolo e inscripción
+
+### Inscripción
+
+👉 **Formulario de inscripción:** *(poner link real después)*  
+`https://forms.gle/TU-LINK`
+
+### Directrices generales
+
+- Mínimo **60 días** de muestreo.
+- Entre **8 y 16 cámaras** por área.
+- Cámaras a **40 cm** del suelo.
+- Distancia entre cámaras **200 m a 5 km**.
+- No usar cebos o iscas.
+- Mantener cámaras dentro del mismo tipo de cobertura.
+
+### Equipos recomendados
+
+- Cámaras de activación ≤ 0,5 segundos.  
+- Infrarrojo (IR).  
+- SD 16–32 GB.  
+- Baterías AA recargables.
+
+:::
+
+
+::: {#sobre}
+# Sobre
+
+Snapshot Paraguay es un proyecto colaborativo con instituciones aliadas, investigadores, ONGs y voluntarios de todo el país.
+
+:::
+
+
+::: {#contacto}
+# Contacto
+
+📧 Email: **snapshotparaguay@ejemplo.org**
+:::
+
+```{=html}
+<script>
+  document.addEventListener("scroll", function() {
+    const navbar = document.querySelector(".navbar");
+    const hero   = document.querySelector(".hero");
+    if (!navbar || !hero) return;
+
+    const heroHeight = hero.offsetHeight;
+
+    if (window.scrollY > heroHeight - 80) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  });
+</script>

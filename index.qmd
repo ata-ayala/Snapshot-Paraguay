@@ -61,21 +61,44 @@ A través de esta nueva red de colaboración, buscamos potenciar conexiones cien
 
 :::
 
+::: {#colaboradores}
 
-::: {#galeria}
+# Colaboradores
 
-# Galería
+<div class="colab-wrapper">
 
-<div class="masonry">
+<div class="colab-item">
 
- <img src="images/galeria1.jpg" alt="Foto 1">
-  <img src="images/galeria2.jpg" alt="Foto 2">
-  <img src="images/galeria3.jpg" alt="Foto 3">
-  <img src="images/galeria4.jpg" alt="Foto 4">
-  <img src="images/galeria5.jpg" alt="Foto 5">
-  <img src="images/galeria6.jpg" alt="Foto 6">
-  <img src="images/galeria7.jpg" alt="Foto 7">
+<div class="colab-logo">
+  <img src="images/tekolab_logo.png" alt="TekoLab logo">
+</div>
 
+### TekoLab – Cerro Kavaju
+
+**TekoLab** es el laboratorio vivo de innovación socioambiental que impulsa  
+las acciones de conservación, restauración ecológica, senderismo y escalada responsable  
+en el **Cerro Kavaju** (Departamento de Cordillera).
+
+Desde TekoLab se coordina el área piloto de **Snapshot Paraguay**, incluyendo:
+
+- Instalación y mantenimiento de cámaras trampa.  
+- Monitoreo de mamíferos de mediano y gran porte.  
+- Educación ambiental y trabajo con comunidades locales.  
+- Apoyo a investigaciones sobre biodiversidad y uso público del cerro.
+
+</div>
+
+<div class="colab-item colab-placeholder">
+
+### ¿Nuevo colaborador?
+
+En las próximas fases del proyecto se integrarán otras organizaciones, grupos de  
+investigación y áreas protegidas que operan en diferentes regiones del país.
+
+La idea es construir una **red nacional de sitios de monitoreo**,  
+conectada con la iniciativa global Snapshot.
+
+</div>
 
 </div>
 
@@ -83,7 +106,76 @@ A través de esta nueva red de colaboración, buscamos potenciar conexiones cien
 
 
 
+::: {#areas}
 
+# Áreas de muestreo
+
+Estas son las áreas de muestreo actualmente activas en **Snapshot Paraguay**.  
+En esta primera versión se incluye solamente el área piloto de **Cerro Kavaju**.  
+En futuras versiones se agregarán nuevas áreas, ecorregiones, número de cámaras y otros indicadores.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(leaflet)
+library(tibble)
+
+# Tabla de puntos de muestreo (por ahora 1 sitio)
+puntos <- tibble(
+  nombre     = "Cerro Kavaju",
+  lat        = -25.304816,
+  lng        = -57.129486,
+  ecorregion = "Paraguay Central",
+  ecosistema = "Bosque",
+  camaras    = 6
+)
+
+# Icono tipo cámara (Font Awesome)
+icon_cam <- awesomeIcons(
+  icon        = "camera",
+  library     = "fa",
+  iconColor   = "white",
+  markerColor = "darkgreen"
+)
+
+leaflet(puntos) |>
+  addProviderTiles(leaflet::providers$OpenStreetMap) |>
+  setView(lng = -57.129486, lat = -25.304816, zoom = 13) |>
+  addAwesomeMarkers(
+    lng = ~lng,
+    lat = ~lat,
+    icon = icon_cam,
+    popup = ~paste0(
+      "<strong>", nombre, "</strong><br/>",
+      "Ecorregión: ", ecorregion, "<br/>",
+      "Ecosistema: ", ecosistema, "<br/>",
+      "Cantidad de cámaras: ", camaras
+    ),
+    label = ~paste0("Cámaras: ", camaras),
+    labelOptions = labelOptions(
+      direction = "top",
+      textsize  = "12px",
+      offset    = c(0, -5)
+    )
+  )
+```
+:::
+
+::: {#galeria}
+
+# Galería
+
+<div class="masonry">
+
+  <img src="images/galeria1.jpg" alt="Foto 1">
+  <img src="images/galeria2.jpg" alt="Foto 2">
+  <img src="images/galeria3.jpg" alt="Foto 3">
+  <img src="images/galeria4.jpg" alt="Foto 4">
+  <img src="images/galeria5.jpg" alt="Foto 5">
+  <img src="images/galeria6.jpg" alt="Foto 6">
+  <img src="images/galeria7.jpg" alt="Foto 7">
+
+</div>
+
+:::
 
 ::: {#contacto}
 # Contacto

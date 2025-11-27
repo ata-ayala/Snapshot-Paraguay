@@ -122,6 +122,48 @@ html, body {
 }
 
 /* ============================
+   Colaboradores
+   ============================ */
+
+.colab-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+.colab-item {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.colab-item h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.colab-placeholder {
+  opacity: 0.9;
+  border: 1px dashed #cccccc;
+}
+
+/* Logo dentro de las tarjetas de Colaboradores */
+.colab-logo {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.colab-logo img {
+  max-width: 140px;  /* ajustá si querés más grande o chico */
+  height: auto;
+  display: inline-block;
+}
+
+
+
+/* ============================
    Galería de imágenes
    ============================ */
 

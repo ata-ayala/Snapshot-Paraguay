@@ -16,8 +16,8 @@ website:
         href: "#sobre-proyecto"
       - text: "Protocolo e inscripción"
         href: "#protocolo"
-      - text: "Sobre"
-        href: "#sobre"
+      - text: "Galería"
+        href: "#galeria"
       - text: "Contacto"
         href: "#contacto"
 
@@ -25,6 +25,8 @@ format:
   html:
     theme: cosmo
     css: styles.css
+    smooth-scroll: true
+    include-in-header: lightbox.html
     
 
 lang: es

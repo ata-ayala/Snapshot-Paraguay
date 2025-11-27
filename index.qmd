@@ -62,12 +62,27 @@ A través de esta nueva red de colaboración, buscamos potenciar conexiones cien
 :::
 
 
-::: {#sobre}
-# Sobre
+::: {#galeria}
 
-Snapshot Paraguay es un proyecto colaborativo con instituciones aliadas, investigadores, ONGs y voluntarios de todo el país.
+# Galería
+
+<div class="masonry">
+
+ <img src="images/galeria1.jpg" alt="Foto 1">
+  <img src="images/galeria2.jpg" alt="Foto 2">
+  <img src="images/galeria3.jpg" alt="Foto 3">
+  <img src="images/galeria4.jpg" alt="Foto 4">
+  <img src="images/galeria5.jpg" alt="Foto 5">
+  <img src="images/galeria6.jpg" alt="Foto 6">
+  <img src="images/galeria7.jpg" alt="Foto 7">
+
+
+</div>
 
 :::
+
+
+
 
 
 ::: {#contacto}
@@ -76,8 +91,15 @@ Snapshot Paraguay es un proyecto colaborativo con instituciones aliadas, investi
 📧 Email: **snapshotparaguay@ejemplo.org**
 :::
 
+
+
 ```{=html}
+<div id="img-lightbox" class="img-lightbox">
+  <img id="img-lightbox-img" src="" alt="">
+</div>
+
 <script>
+  // Efecto navbar con scroll
   document.addEventListener("scroll", function() {
     const navbar = document.querySelector(".navbar");
     const hero   = document.querySelector(".hero");
@@ -90,5 +112,32 @@ Snapshot Paraguay es un proyecto colaborativo con instituciones aliadas, investi
     } else {
       navbar.classList.remove("scrolled");
     }
+  });
+
+  // Lightbox sencillo para la galería
+  document.addEventListener("DOMContentLoaded", function() {
+    const lightbox = document.getElementById("img-lightbox");
+    const lightboxImg = document.getElementById("img-lightbox-img");
+
+    // Todas las imágenes de la galería Masonry
+    document.querySelectorAll(".masonry img").forEach(function(img) {
+      img.style.cursor = "zoom-in";
+      img.addEventListener("click", function() {
+        lightboxImg.src = img.src;
+        lightbox.classList.add("open");
+      });
+    });
+
+    // Cerrar al hacer click en el fondo
+    lightbox.addEventListener("click", function() {
+      lightbox.classList.remove("open");
+    });
+
+    // Cerrar con tecla Esc
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") {
+        lightbox.classList.remove("open");
+      }
+    });
   });
 </script>

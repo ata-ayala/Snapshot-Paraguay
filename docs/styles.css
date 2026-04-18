@@ -127,9 +127,29 @@ html, body {
 
 .colab-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
   margin: 3rem 0;
+}
+
+/* Desktop grande */
+@media (min-width: 1200px) {
+  .colab-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablet */
+@media (max-width: 1199px) {
+  .colab-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Móvil */
+@media (max-width: 600px) {
+  .colab-wrapper {
+    grid-template-columns: 1fr;
+  }
 }
 
 .colab-item {
@@ -137,6 +157,8 @@ html, body {
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
 }
 
 .colab-item h3 {
@@ -151,16 +173,32 @@ html, body {
 
 /* Logo dentro de las tarjetas de Colaboradores */
 .colab-logo {
-  text-align: center;
-  margin-bottom: 1rem;
+ height: 140px;                 /* MISMO espacio para todos */
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-bottom: 1rem;
+ overflow: hidden;
 }
 
 .colab-logo img {
-  max-width: 140px;  /* ajustá si querés más grande o chico */
+  max-width: 180px;    
+  max-height: 120px;            
+  width: auto;
   height: auto;
-  display: inline-block;
+  object-fit: contain;
+  display: block;
+}
+/* ===== Texto ===== */
+
+.colab-item p {
+  text-align: justify;
+  text-justify: inter-word;
 }
 
+.colab-item ul {
+  text-align: left;
+}
 
 
 /* ============================

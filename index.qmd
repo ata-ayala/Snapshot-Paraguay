@@ -41,9 +41,16 @@ innovadoras que contribuyan a la conservación de la biodiversidad
 paraguaya.
 :::
 
+
 ::: sobre-imagen
 ![](images/snapshot_paraguay.png)
 :::
+:::::
+
+::: {.protocolo-img}
+![](images/Protocolo.png)
+:::
+
 :::::
 ::::::
 

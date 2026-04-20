@@ -261,3 +261,23 @@ html, body {
 .img-lightbox {
   cursor: zoom-out;
 }
+/* ============================
+   Protocolo (fondo negro imagen)
+   ============================ */
+
+.protocolo-img {
+  background-color: #000;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+
+  /* 👇 esto hace que ocupe todo el ancho real */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+.protocolo-img img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

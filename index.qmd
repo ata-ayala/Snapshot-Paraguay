@@ -1,5 +1,6 @@
 ---
 title: ""
+title-block: false
 page-layout: full
 editor: 
   markdown: 
@@ -10,8 +11,9 @@ editor:
 :::
 
 :::::: {#sobre-proyecto}
-::::: sobre-wrapper
-::: sobre-texto
+::::: {.sobre-wrapper}
+::: {.sobre-texto}
+
 # Sobre el proyecto
 
 Desde 2019, el proyecto Snapshot se dedica al monitoreo global,
@@ -51,36 +53,24 @@ paraguaya.
 ![](images/Protocolo.png)
 :::
 
-:::::
 ::::::
 
 ::: {#protocolo}
 # Protocolo e inscripción
 
 ### Inscripción
+Sumarte a Snapshot Paraguay es muy simple 
+Solo tenés que completar el formulario de inscripción en el siguiente enlace:
 
-👉 **Formulario de inscripción:** *(poner link real después)*\
+**Formulario de inscripción:** 
 `https://forms.gle/TU-LINK`
 
-### Directrices generales
-
--   Mínimo **60 días** de muestreo.
--   Entre **8 y 16 cámaras** por área.
--   Cámaras a **40 cm** del suelo.
--   Distancia entre cámaras **200 m a 5 km**.
--   No usar cebos o iscas.
--   Mantener cámaras dentro del mismo tipo de cobertura.
-
-### Equipos recomendados
-
--   Cámaras de activación ≤ 0,5 segundos.\
--   Infrarrojo (IR).\
--   SD 16–32 GB.\
--   Baterías AA recargables.
-:::
+Con esta información podremos conocerte mejor y acompañarte en el proceso de instalación y monitoreo.
+Una vez que recibamos tu formulario, el equipo se pondrá en contacto para los próximos pasos.
+Si te surge cualquier duda, podés escribirnos con confianza a: snapshotparaguay@gmail.com
 
 :::::::::::::::::: {#colaboradores}
-# Colaboradores
+## Colaboradores
 
 ::::::::::::::::: colab-wrapper
 :::: colab-item
@@ -241,23 +231,22 @@ leaflet(puntos) |>
 # Galería
 
 ::: masonry
-<img src="images/galeria1.jpg" alt="Foto 1"/>
-<img src="images/galeria2.jpg" alt="Foto 2"/>
-<img src="images/galeria3.jpg" alt="Foto 3"/>
+<img src="images/galeria_a.jpg" alt="Foto 1"/>
+<img src="images/galeria_c.jpg" alt="Foto 2"/>
 <img src="images/galeria4.jpg" alt="Foto 4"/>
 <img src="images/galeria5.jpg" alt="Foto 5"/>
-<img src="images/galeria6.jpg" alt="Foto 6"/>
-<img src="images/galeria7.jpg" alt="Foto 7"/>
+<img src="images/galeria_b.jpg" alt="Foto 6"/>
+<img src="images/galeria_d.jpg" alt="Foto 7"/>
 :::
 ::::
 
 ::: {#contacto}
 # Contacto
 
-📧 Email: **snapshotparaguay\@ejemplo.org**
+📧 Email: **snapshotparaguay@gmail.com**
 :::
 
-\`\`\`{=html}
+
 
 ::: {#img-lightbox .img-lightbox}
 <img id="img-lightbox-img"/>

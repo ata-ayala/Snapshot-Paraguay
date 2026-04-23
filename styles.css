@@ -60,7 +60,7 @@ html, body {
 .hero {
   height: 100vh;         /* ocupa todo el alto de la pantalla */
   width: 100vw;          /* ocupa todo el ancho */
-  background-image: url("images/hero_paraguay.jpg");
+  background-image: url("images/portada.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -280,4 +280,11 @@ html, body {
   max-width: 100%;
   height: auto;
   display: block;
+}
+.quarto-title-block {
+  display: none !important;
+}
+
+h1, h2 {
+  border-bottom: none !important;
 }

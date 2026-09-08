@@ -1,7 +1,7 @@
+```css
 /* =========================================
    1. Reset básico
    ========================================= */
-
 html, body {
   margin: 0;
   padding: 0;
@@ -17,11 +17,9 @@ html, body {
   max-width: 100%;
 }
 
-
 /* =========================================
    2. Navbar fija arriba, transparente y con texto blanco
    ========================================= */
-
 .navbar {
   position: fixed;
   top: 0;
@@ -56,14 +54,12 @@ html, body {
   text-shadow: none !important;
 }
 
-
 /* =========================================
    3. HERO: imagen de fondo a pantalla completa
    ========================================= */
-
 .hero {
-  height: 100vh;
-  width: 100vw;
+  height: 100vh;         /* ocupa todo el alto de la pantalla */
+  width: 100vw;          /* ocupa todo el ancho */
   background-image: url("images/portada.png");
   background-size: cover;
   background-position: center;
@@ -71,47 +67,37 @@ html, body {
   margin: 0;
   padding: 0;
 
-  /* salir del contenedor centrado y cubrir todo el ancho */
+  /* truco para salir del contenedor centrado y cubrir izq/der */
   margin-left: calc(50% - 50vw);
-
-  /* arrancar detrás del menú */
-  margin-top: -60px;
+  margin-top: -60px;   /* para que arranque detrás del menú */
 }
 
-
-/* =========================================
-   Ajuste de desplazamiento para menú fijo
-   ========================================= */
-
+/* Ajuste de desplazamiento para secciones con el menú fijo */
 #sobre-proyecto,
 #protocolo,
 #sobre,
-#areas,
-#galeria,
-#colaboradores,
 #contacto {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 80px;  /* ajustá si querés más/menos espacio debajo del menú */
 }
 
-
-/* =========================================
-   4. Sobre el proyecto: texto + imagen
-   ========================================= */
+/* ============================
+  4. Sobre el proyecto: layout texto + imagen
+   ============================ */
 
 .sobre-wrapper {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: center;   /* 👈 CENTRA verticalmente texto + imagen */
   gap: 1.5rem;
   margin: 2rem 0;
 }
 
-/* Texto ≈55% */
+/* Texto ocupa un poco más que la imagen (≈55%) */
 .sobre-texto {
   flex: 1 1 55%;
 }
 
-/* Imagen ≈45% */
+/* Imagen a la derecha, sin efectos especiales */
 .sobre-imagen {
   flex: 1 1 45%;
   display: flex;
@@ -124,7 +110,7 @@ html, body {
   display: block;
 }
 
-/* Responsive */
+/* Responsive: en pantallas chicas, apilar */
 @media (max-width: 900px) {
   .sobre-wrapper {
     flex-direction: column;
@@ -135,100 +121,9 @@ html, body {
   }
 }
 
-
-/* =========================================
-   5. Imagen del protocolo
-   ========================================= */
-
-.protocolo-img {
-  background-color: #000;
-  padding: 2rem 0;
-  display: flex;
-  justify-content: center;
-
-  /* ocupar todo el ancho real */
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-}
-
-.protocolo-img img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-
-/* =========================================
-   6. Inscripción + QR
-   ========================================= */
-
-.inscripcion-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 3rem;
-  margin: 1.5rem 0 3rem 0;
-}
-
-.inscripcion-texto {
-  flex: 1;
-}
-
-.inscripcion-qr {
-  width: 220px;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-.inscripcion-qr img {
-  width: 180px;
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto 0.6rem auto;
-}
-
-/* Botón del formulario */
-.btn-inscripcion {
-  display: inline-block;
-  padding: 10px 18px;
-  margin: 10px 0 15px 0;
-  background: #2f6b46;
-  color: #ffffff !important;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: 600;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.btn-inscripcion:hover {
-  opacity: 0.88;
-  transform: translateY(-1px);
-  text-decoration: none;
-}
-
-/* Celular: QR debajo del texto */
-@media (max-width: 768px) {
-  .inscripcion-wrapper {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
-  }
-
-  .inscripcion-qr {
-    width: 100%;
-    text-align: center;
-  }
-
-  .inscripcion-qr img {
-    width: 160px;
-  }
-}
-
-
-/* =========================================
-   7. Colaboradores
-   ========================================= */
+/* ============================
+   Colaboradores
+   ============================ */
 
 .colab-wrapper {
   display: grid;
@@ -276,33 +171,25 @@ html, body {
   border: 1px dashed #cccccc;
 }
 
-
-/* =========================================
-   Logos de colaboradores
-   ========================================= */
-
+/* Logo dentro de las tarjetas de Colaboradores */
 .colab-logo {
-  height: 140px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-  overflow: hidden;
+ height: 140px;                 /* MISMO espacio para todos */
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-bottom: 1rem;
+ overflow: hidden;
 }
 
 .colab-logo img {
-  max-width: 180px;
-  max-height: 120px;
+  max-width: 180px;    
+  max-height: 120px;            
   width: auto;
   height: auto;
   object-fit: contain;
   display: block;
 }
-
-
-/* =========================================
-   Texto de colaboradores
-   ========================================= */
+/* ===== Texto ===== */
 
 .colab-item p {
   text-align: justify;
@@ -314,9 +201,9 @@ html, body {
 }
 
 
-/* =========================================
-   8. Galería de imágenes
-   ========================================= */
+/* ============================
+   Galería de imágenes
+   ============================ */
 
 .masonry {
   column-count: 3;
@@ -336,34 +223,27 @@ html, body {
   transform: scale(1.03);
 }
 
-/* Tablet */
+/* Responsive */
 @media (max-width: 900px) {
-  .masonry {
-    column-count: 2;
-  }
+  .masonry { column-count: 2; }
 }
 
-/* Móvil */
 @media (max-width: 600px) {
-  .masonry {
-    column-count: 1;
-  }
+  .masonry { column-count: 1; }
 }
 
-
-/* =========================================
-   9. Lightbox de la galería
-   ========================================= */
+/* ============================
+   Lightbox sencillo para la galería
+   ============================ */
 
 .img-lightbox {
   position: fixed;
-  inset: 0;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
   background: rgba(0, 0, 0, 0.85);
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 2000;
-  cursor: zoom-out;
 }
 
 .img-lightbox.open {
@@ -377,16 +257,34 @@ html, body {
   box-shadow: 0 0 20px rgba(0,0,0,0.7);
 }
 
+/* Opcional: cursor de cerrar cuando está abierto */
+.img-lightbox {
+  cursor: zoom-out;
+}
+/* ============================
+   Protocolo (fondo negro imagen)
+   ============================ */
 
-/* =========================================
-   10. Ajustes generales de Quarto
-   ========================================= */
+.protocolo-img {
+  background-color: #000;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
 
+  /* 👇 esto hace que ocupe todo el ancho real */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+.protocolo-img img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 .quarto-title-block {
   display: none !important;
 }
 
-h1,
-h2 {
+h1, h2 {
   border-bottom: none !important;
 }

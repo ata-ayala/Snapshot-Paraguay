@@ -59,15 +59,38 @@ paraguaya.
 # Protocolo e inscripción
 
 ### Inscripción
-Sumarte a Snapshot Paraguay es muy simple 
-Solo tenés que completar el formulario de inscripción en el siguiente enlace:
 
-**Formulario de inscripción:** 
-`https://forms.gle/TU-LINK`
+:::: {.inscripcion-wrapper}
 
-Con esta información podremos conocerte mejor y acompañarte en el proceso de instalación y monitoreo.
-Una vez que recibamos tu formulario, el equipo se pondrá en contacto para los próximos pasos.
-Si te surge cualquier duda, podés escribirnos con confianza a: snapshotparaguay@gmail.com
+::: {.inscripcion-texto}
+
+Sumarte a Snapshot Paraguay es muy simple.  
+Solo tenés que completar el formulario de inscripción:
+
+[**Abrir formulario de inscripción**](https://qrco.de/bgzxb9){.btn-inscripcion}
+
+Con esta información podremos conocerte mejor y acompañarte en el proceso
+de instalación y monitoreo.
+
+Una vez que recibamos tu formulario, el equipo se pondrá en contacto
+para los próximos pasos.
+
+Si te surge cualquier duda, podés escribirnos con confianza a:
+**snapshotparaguay@gmail.com**
+
+:::
+
+::: {.inscripcion-qr}
+
+[![](images/qr.png){fig-alt="QR del formulario de inscripción"}](https://qrco.de/bgzxb9)
+
+**Escaneá el QR para inscribirte**
+
+:::
+
+::::
+
+:::
 
 :::::::::::::::::: {#colaboradores}
 ## Colaboradores

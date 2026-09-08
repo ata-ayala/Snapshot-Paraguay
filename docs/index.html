@@ -73,7 +73,6 @@ ul.task-list li input[type="checkbox"] {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
@@ -152,193 +151,955 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div id="inicio" class="hero">
+<style>
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden;
+  background: #ffffff;
+  color: #222;
+}
+
+#quarto-content,
+.page-columns,
+.page-layout-full,
+main.content,
+main {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.quarto-title-block {
+  display: none !important;
+}
+
+h1, h2, h3 {
+  border-bottom: none !important;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background: transparent !important;
+  transition: background .3s ease;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: white !important;
+  text-shadow: 0 2px 6px rgba(0,0,0,.7);
+}
+
+.navbar.scrolled {
+  background: rgba(14, 24, 17, .94) !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,.15);
+}
+
+.navbar.scrolled .navbar-brand,
+.navbar.scrolled .nav-link {
+  text-shadow: none;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  width: 100vw;
+  height: 100vh;
+  min-height: 650px;
+
+  background-image:
+    linear-gradient(
+      rgba(0,0,0,.05),
+      rgba(0,0,0,.12)
+    ),
+    url("images/portada.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* =========================================================
+   SECCIONES
+   ========================================================= */
+
+.section {
+  width: 100%;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 80px 35px;
+  box-sizing: border-box;
+}
+
+.container h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin: 0 0 35px 0;
+}
+
+.container h2 {
+  font-size: 1.6rem;
+}
+
+.container p {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   SOBRE
+   ========================================================= */
+
+.about {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 65px;
+  align-items: center;
+}
+
+.about-image img {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: auto;
+}
+
+
+/* =========================================================
+   PROTOCOLO - IMAGEN NEGRA
+   ========================================================= */
+
+.protocol-image {
+  width: 100vw;
+  background: #000;
+  padding: 30px 0;
+  text-align: center;
+}
+
+.protocol-image img {
+  display: block;
+  width: min(1150px, 95vw);
+  height: auto;
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   INSCRIPCIÓN
+   ========================================================= */
+
+.registration {
+  display: grid;
+  grid-template-columns: 1fr 230px;
+  gap: 50px;
+  align-items: center;
+
+  background: #f4f7f3;
+
+  padding: 40px;
+
+  border-radius: 18px;
+}
+
+.registration h2 {
+  margin-top: 0;
+}
+
+.registration-qr {
+  text-align: center;
+}
+
+.registration-qr img {
+  width: 180px;
+  height: auto;
+  display: block;
+  margin: 0 auto 12px auto;
+}
+
+.registration-qr p {
+  font-size: .9rem;
+  line-height: 1.4;
+}
+
+.button {
+  display: inline-block;
+
+  background: #356d49;
+  color: #fff !important;
+
+  padding: 12px 22px;
+
+  border-radius: 7px;
+
+  text-decoration: none !important;
+  font-weight: 700;
+
+  margin: 8px 0 15px 0;
+
+  transition: .2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  opacity: .9;
+}
+
+
+/* =========================================================
+   COLABORADORES
+   ========================================================= */
+
+.gray-section {
+  background: #f7f7f5;
+}
+
+.collaborators {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.card {
+  background: white;
+  border-radius: 15px;
+
+  padding: 25px;
+
+  box-shadow:
+    0 4px 18px rgba(0,0,0,.07);
+}
+
+.card-logo {
+  height: 125px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 15px;
+}
+
+.card-logo img {
+  max-width: 180px;
+  max-height: 110px;
+  object-fit: contain;
+}
+
+.card h3 {
+  margin: 10px 0 15px;
+  font-size: 1.25rem;
+}
+
+.card p,
+.card li {
+  font-size: .94rem;
+  line-height: 1.6;
+}
+
+.card ul {
+  padding-left: 20px;
+}
+
+
+/* =========================================================
+   MAPA
+   ========================================================= */
+
+.map-intro {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 80px 35px 20px 35px;
+  box-sizing: border-box;
+}
+
+.map-intro h1 {
+  font-size: 2.4rem;
+  margin-top: 0;
+}
+
+
+/* Esta clase la usamos para contener el widget */
+.map-wrapper {
+  max-width: 1110px;
+  margin: 0 auto 80px auto;
+}
+
+
+/* =========================================================
+   GALERÍA
+   ========================================================= */
+
+.gallery {
+  columns: 3;
+  column-gap: 18px;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+
+  display: block;
+
+  margin: 0 0 18px 0;
+
+  border-radius: 12px;
+
+  break-inside: avoid;
+
+  cursor: zoom-in;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.gallery img:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.18);
+}
+
+
+/* =========================================================
+   LIGHTBOX
+   ========================================================= */
+
+#lightbox {
+  position: fixed;
+  inset: 0;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,.92);
+
+  z-index: 20000;
+
+  cursor: zoom-out;
+}
+
+#lightbox.open {
+  display: flex;
+}
+
+#lightbox img {
+  max-width: 92vw;
+  max-height: 90vh;
+
+  border-radius: 10px;
+}
+
+
+/* =========================================================
+   CONTACTO
+   ========================================================= */
+
+.contact-section {
+  background: #17231b;
+  color: white;
+}
+
+.contact-section a {
+  color: white;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 950px) {
+
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  .collaborators {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery {
+    columns: 2;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .container {
+    padding: 55px 22px;
+  }
+
+  .container h1 {
+    font-size: 2rem;
+  }
+
+  .registration {
+    grid-template-columns: 1fr;
+    padding: 28px;
+  }
+
+  .registration-qr {
+    margin-top: 10px;
+  }
+
+  .collaborators {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery {
+    columns: 1;
+  }
+
+  .hero {
+    min-height: 520px;
+  }
+
+}
+
+</style>
+
+
+<!-- ======================================================
+     PORTADA
+     ====================================================== -->
+
+<div id="inicio" class="hero"></div>
+
+
+<!-- ======================================================
+     SOBRE
+     ====================================================== -->
+
+<section id="sobre-proyecto" class="section">
+
+<div class="container">
+
+<div class="about">
+
+<div class="about-text">
+
+
+
+<p>
+Desde 2019, el proyecto Snapshot se dedica al monitoreo global,
+estandarizado y de largo plazo de mamíferos terrestres de mediano y gran
+porte, mediante iniciativas colaborativas que integran grupos de
+investigación, instituciones, científicos/as y personas entusiastas de
+la naturaleza y la ciencia ciudadana.
+</p>
+
+<p>
+Esta red internacional no solo impulsa el avance en la generación y
+disponibilidad de datos abiertos a gran escala, sino que también
+fortalece y amplía la cooperación entre equipos de investigación a nivel
+nacional e internacional.
+</p>
+
+<p>
+Actualmente, el proyecto está presente en diversos países, incluyendo
+Estados Unidos, Japón, Europa y, desde 2025, también en América del Sur,
+con su expansión hacia Brasil y ahora hacia Paraguay.
+</p>
+
+<p>
+Con <strong>Snapshot Paraguay</strong> buscamos establecer un programa
+de monitoreo de largo plazo que permita evaluar la biodiversidad de
+mamíferos terrestres y comprender cómo cambian los ecosistemas en un
+contexto de transformaciones ambientales y climáticas aceleradas.
+</p>
+
+<p>
+A través de esta nueva red de colaboración, buscamos potenciar
+conexiones científicas, generar oportunidades para nuevas alianzas,
+involucrar más instituciones del país y fomentar investigaciones
+innovadoras que contribuyan a la conservación de la biodiversidad
+paraguaya.
+</p>
 
 </div>
-<div id="sobre-proyecto">
-<div class="sobre-wrapper">
-<section id="sobre-el-proyecto" class="level1 sobre-texto">
 
-<p>Desde 2019, el proyecto Snapshot se dedica al monitoreo global, estandarizado y de largo plazo de mamíferos terrestres de mediano y gran porte, mediante iniciativas colaborativas que integran grupos de investigación, instituciones, científicos/as y personas entusiastas de la naturaleza y la ciencia ciudadana.</p>
-<p>Esta red internacional no solo impulsa el avance en la generación y disponibilidad de datos abiertos a gran escala, sino que también fortalece y amplía la cooperación entre equipos de investigación a nivel nacional e internacional.</p>
-<p>Actualmente, el proyecto está presente en diversos países, incluyendo Estados Unidos, Japón, Europa y, desde 2025, también en América del Sur, con su expansión hacia Brasil y ahora hacia Paraguay.</p>
-<p>Con <strong>Snapshot Paraguay</strong> buscamos establecer un programa de monitoreo de largo plazo que permita evaluar la biodiversidad de mamíferos terrestres y comprender cómo cambian los ecosistemas en un contexto de transformaciones ambientales y climáticas aceleradas.</p>
-<p>A través de esta nueva red de colaboración, buscamos potenciar conexiones científicas, generar oportunidades para nuevas alianzas, involucrar más instituciones del país y fomentar investigaciones innovadoras que contribuyan a la conservación de la biodiversidad paraguaya.</p>
+<div class="about-image">
+
+<img src="images/snapshot_paraguay.png" alt="Snapshot Paraguay">
+
+</div>
+
+</div>
+
+</div>
+
 </section>
-<div class="sobre-imagen">
-<p><img src="images/snapshot_paraguay.png" class="img-fluid"></p>
+
+
+<!-- ======================================================
+     IMAGEN DEL PROTOCOLO
+     ====================================================== -->
+
+<div class="protocol-image">
+
+<img src="images/Protocolo.png" alt="Protocolo Snapshot Paraguay">
+
 </div>
-</div>
-<div class="protocolo-img">
-<p><img src="images/Protocolo.png" class="img-fluid"></p>
-</div>
-</div>
-<div id="protocolo">
-<section id="protocolo-e-inscripción" class="level1">
+
+
+<!-- ======================================================
+     INSCRIPCIÓN
+     ====================================================== -->
+
+<section id="protocolo" class="section">
+
+<div class="container">
+
 <h1>Protocolo e inscripción</h1>
-<section id="inscripción" class="level3">
-<h3 class="anchored" data-anchor-id="inscripción">Inscripción</h3>
-<p>Sumarte a Snapshot Paraguay es muy simple Solo tenés que completar el formulario de inscripción en el siguiente enlace:</p>
-<p><strong>Formulario de inscripción:</strong> <code>https://forms.gle/TU-LINK</code></p>
-<p>Con esta información podremos conocerte mejor y acompañarte en el proceso de instalación y monitoreo. Una vez que recibamos tu formulario, el equipo se pondrá en contacto para los próximos pasos. Si te surge cualquier duda, podés escribirnos con confianza a: snapshotparaguay@gmail.com</p>
-</section>
-<section id="colaboradores" class="level2">
-<h2 class="anchored" data-anchor-id="colaboradores">Colaboradores</h2>
-<div class="colab-wrapper">
-<div class="colab-item">
-<div class="colab-logo">
-<p><img src="images/tekolab_logo.png" alt="TekoLab logo"></p>
+
+<div class="registration">
+
+<div>
+
+<h2 class="anchored">Inscripción</h2>
+
+<p>
+Sumarte a <strong>Snapshot Paraguay</strong> es muy simple.
+Solo tenés que completar el formulario de inscripción.
+</p>
+
+<a class="button" href="https://qrco.de/bgzxb9" target="_blank">
+Abrir formulario de inscripción
+</a>
+
+<p>
+Con esta información podremos conocerte mejor y acompañarte
+en el proceso de instalación y monitoreo.
+</p>
+
+<p>
+Una vez que recibamos tu formulario, el equipo se pondrá
+en contacto para los próximos pasos.
+</p>
+
+<p>
+Si te surge cualquier duda, podés escribirnos a
+<strong>snapshotparaguay@gmail.com</strong>.
+</p>
+
 </div>
-<section id="tekolab-cerro-kavaju" class="level3">
-<h3 class="anchored" data-anchor-id="tekolab-cerro-kavaju">TekoLab – Cerro Kavaju</h3>
-<p>TekoLab es el laboratorio vivo de innovación socioambiental que impulsa las acciones de conservación, restauración ecológica, senderismo y escalada responsable en el Cerro Kavaju (Departamento de Cordillera).</p>
-<p>Desde TekoLab se coordina el área piloto de Snapshot Paraguay, incluyendo:</p>
+
+
+<div class="registration-qr">
+
+<a href="https://qrco.de/bgzxb9" target="_blank">
+
+<img src="images/qr.png" alt="QR formulario Snapshot Paraguay">
+
+</a>
+
+<p>
+<strong>Escaneá el QR<br>
+para inscribirte</strong>
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     COLABORADORES
+     ====================================================== -->
+
+<section id="colaboradores" class="section gray-section">
+
+<div class="container">
+
+<h1>Colaboradores</h1>
+
+<div class="collaborators">
+
+
+<!-- TEKOLAB -->
+
+<div class="card">
+
+<div class="card-logo">
+<img src="images/tekolab_logo.png" alt="TekoLab">
+</div>
+
+<h3 class="anchored">TekoLab – Cerro Kavaju</h3>
+
+<p>
+TekoLab es el laboratorio vivo de innovación socioambiental
+que impulsa acciones de conservación, restauración ecológica,
+senderismo y escalada responsable en el Cerro Kavaju.
+</p>
+
 <ul>
-<li>Instalación y mantenimiento de cámaras trampa.<br>
-</li>
-<li>Monitoreo de mamíferos de mediano y gran porte.<br>
-</li>
-<li>Educación ambiental y trabajo con comunidades locales.<br>
-</li>
-<li>Apoyo a investigaciones sobre biodiversidad y uso público del cerro.</li>
+<li>Instalación y mantenimiento de cámaras trampa.</li>
+<li>Monitoreo de mamíferos.</li>
+<li>Educación ambiental y trabajo con comunidades.</li>
+<li>Apoyo a investigaciones sobre biodiversidad.</li>
 </ul>
-</section>
+
 </div>
-<div class="colab-item">
-<div class="colab-logo">
-<p><img src="images/FMB_logo.png" alt="FMB logo"></p>
+
+
+<!-- FMB -->
+
+<div class="card">
+
+<div class="card-logo">
+<img src="images/FMB_logo.png" alt="Fundación Moisés Bertoni">
 </div>
-<section id="fundación-moisés-bertoni" class="level3">
-<h3 class="anchored" data-anchor-id="fundación-moisés-bertoni">Fundación Moisés Bertoni</h3>
-<p>La Fundación Moisés Bertoni (FMB) es una asociación privada sin fines de lucro de Paraguay que trabaja en la conservación de la naturaleza y en la promoción del desarrollo sostenible, entendiendo este como la creación de valor en la triple línea de resultados: ambiental, social y económica. Su objetivo es contribuir al mejoramiento de la calidad de vida, a través de la preservación de la biodiversidad, el manejo responsable de los recursos naturales y el impulso de actividades productivas sostenibles para beneficio de las generaciones presentes y futuras.</p>
-</section>
+
+<h3 class="anchored">Fundación Moisés Bertoni</h3>
+
+<p>
+La Fundación Moisés Bertoni es una asociación privada sin fines
+de lucro de Paraguay que trabaja en la conservación de la naturaleza
+y la promoción del desarrollo sostenible.
+</p>
+
+<p>
+Su objetivo es contribuir al mejoramiento de la calidad de vida
+mediante la preservación de la biodiversidad, el manejo responsable
+de los recursos naturales y el impulso de actividades productivas
+sostenibles.
+</p>
+
 </div>
-<div class="colab-item">
-<div class="colab-logo">
-<p><img src="images/logo-horizontal.png" alt="OPADES"></p>
+
+
+<!-- OPADES -->
+
+<div class="card">
+
+<div class="card-logo">
+<img src="images/logo-horizontal.png" alt="OPADES">
 </div>
-<section id="opades-organización-paraguaya-de-conservación-y-desarrollo-sostenible" class="level3">
-<h3 class="anchored" data-anchor-id="opades-organización-paraguaya-de-conservación-y-desarrollo-sostenible">OPADES – Organización Paraguaya de Conservación y Desarrollo Sostenible</h3>
-<p>Organización sin fines de lucro que trabaja por la conservación de la biodiversidad y la promoción del desarrollo sostenible, integrando la educación ambiental, la ciencia ciudadana y el fortalecimiento de las comunidades locales como ejes de acción. Desde OPADES se impulsan iniciativas de investigación participativa y monitoreo de la fauna silvestre, promoviendo el uso de herramientas como las cámaras trampa para generar información científica que contribuya a la toma de decisiones en conservación y al conocimiento de la biodiversidad local. Busca fortalecer el vínculo entre la ciencia, la conservación y la sociedad, fomentando una participación activa de las personas en la protección del patrimonio natural del Paraguay.</p>
-<p>OPADES apoya y coordina acciones como:</p>
+
+<h3 class="anchored">OPADES</h3>
+
+<p>
+La Organización Paraguaya de Conservación y Desarrollo Sostenible
+trabaja por la conservación de la biodiversidad y la promoción
+del desarrollo sostenible mediante educación ambiental,
+ciencia ciudadana y participación comunitaria.
+</p>
+
 <ul>
-<li>Instalación y mantenimiento de cámaras trampa.<br>
-</li>
-<li>Monitoreo de fauna.&nbsp;</li>
-<li>Formación de voluntarios y actores locales en ciencia ciudadana.<br>
-</li>
-<li>Educación ambiental y sensibilización sobre la importancia de la biodiversidad.<br>
-</li>
-<li>Generación de datos para la conservación y la gestión de áreas naturales protegidas.</li>
+<li>Instalación y mantenimiento de cámaras trampa.</li>
+<li>Monitoreo de fauna.</li>
+<li>Formación de voluntarios.</li>
+<li>Educación ambiental.</li>
+<li>Generación de datos para conservación.</li>
 </ul>
+
+</div>
+
+
+<!-- APM -->
+
+<div class="card">
+
+<div class="card-logo">
+<img src="images/Aso_PM_logo.png" alt="Asociación Paraguaya de Mastozoología">
+</div>
+
+<h3 class="anchored">APM – Asociación Paraguaya de Mastozoología</h3>
+
+<p>
+Es una organización de la sociedad civil de Paraguay,
+sin fines de lucro, fundada en 2013.
+</p>
+
+<p>
+Congrega a profesionales y estudiantes dedicados al estudio,
+la investigación científica y la conservación de los
+mamíferos del Paraguay.
+</p>
+
+</div>
+
+
+<!-- GUYRA -->
+
+<div class="card">
+
+<div class="card-logo">
+<img src="images/Guyra_logo.png" alt="Guyra Paraguay">
+</div>
+
+<h3 class="anchored">Guyra Paraguay</h3>
+
+<p>
+Es una organización de la sociedad civil sin fines de lucro
+que trabaja en la defensa y protección de la diversidad
+biológica de Paraguay.
+</p>
+
+<p>
+Integra conservación, investigación, ecología de paisaje
+y soluciones basadas en naturaleza para contribuir a un
+futuro más sostenible.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
 </section>
-</div>
-<div class="colab-item">
-<div class="colab-logo">
-<p><img src="images/Aso_PM_logo.png" alt="Asociación Paraguaya de Mastozoología"></p>
-</div>
-<section id="apm---asociación-paraguaya-de-mastozoología" class="level3">
-<h3 class="anchored" data-anchor-id="apm---asociación-paraguaya-de-mastozoología">APM - Asociación Paraguaya de Mastozoología</h3>
-<p>Es una organización de la sociedad civil de Paraguay, sin fines de lucro, fundada a través de una asamblea el 02 de agosto de 2013. La asociación congrega a los profesionales y estudiantes mastozoólogos que dedican su trabajo al estudio, la investigación científica y la conservación de los mamíferos del Paraguay.</p>
-<p>Entre sus objetivos se encuentra:</p>
-<ul>
-<li>Fomentar y promover la investigación científica en el país, contribuyendo a la difusión, comprensión e impacto de los resultados alcanzados.<br>
-</li>
-<li>Fomentar y promover el trabajo conjunto e interdisciplinario de distintas instituciones y personas interesadas en el estudio y conservación de mamíferos en general a nivel nacional e internacional.<br>
-</li>
-<li>Difusión del conocimiento de los mamíferos y sus roles ecosistémicos a distintos sectores de la sociedad.<br>
-</li>
-</ul>
-</section>
-</div>
-<div class="colab-item">
-<div class="colab-logo">
-<p><img src="images/Guyra_logo.png" alt="Guyra Paraguay"></p>
-</div>
-<section id="guyra-paraguay" class="level3">
-<h3 class="anchored" data-anchor-id="guyra-paraguay">Guyra Paraguay</h3>
-<p>Es una organización de la sociedad civil sin fines de lucro que trabaja en la defensa y protección de la diversidad biológica de Paraguay y la acción organizada de la población, con el fin de asegurar el espacio vital necesario para que las futuras generaciones puedan conocer muestras representativas de la riqueza natural del Paraguay.</p>
-<p>Cuenta con un enfoque estratégico en torno a las especies, los sitios, la sociedad, los sistemas y la ecología de paisaje, conectando a las personas con los hábitat y la biodiversidad, e integra soluciones basadas en naturaleza que promueven la restauración, el desarrollo de la investigación y un cambio en nuestro comportamiento a fin de garantizar un futuro más sostenible.</p>
-</section>
-</div>
-</div>
-</section>
-</section>
-<div id="areas">
-<section id="áreas-de-muestreo" class="level1">
+
+
+<!-- ======================================================
+     MAPA - INTRO
+     ====================================================== -->
+
+<section id="areas" class="section">
+
+<div class="map-intro">
+
 <h1>Áreas de muestreo</h1>
-<p>Estas son las áreas de muestreo actualmente activas en <strong>Snapshot Paraguay</strong>.<br>
-En esta primera versión se incluye solamente el área piloto de <strong>Cerro Kavaju</strong>.<br>
-En futuras versiones se agregarán nuevas áreas, ecorregiones, número de cámaras y otros indicadores.</p>
+
+<p>
+Estas son las áreas de muestreo actualmente activas en
+<strong>Snapshot Paraguay</strong>.
+</p>
+
+<p>
+En esta primera versión se incluye solamente el área piloto
+de <strong>Cerro Kavaju</strong>.
+</p>
+
+<p>
+En futuras versiones se agregarán nuevas áreas, ecorregiones,
+número de cámaras y otros indicadores.
+</p>
+
+</div>
+
+</section>
 <div class="cell">
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-ed5c7c602c722a7f2236" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-ed5c7c602c722a7f2236">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addAwesomeMarkers","args":[-25.304816,-57.129486,{"icon":"camera","markerColor":"darkgreen","iconColor":"white","spin":false,"squareMarker":false,"iconRotate":0,"font":"monospace","prefix":"fa"},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<strong>Cerro Kavaju<\/strong><br/>Ecorregión: Paraguay Central<br/>Ecosistema: Bosque<br/>Cantidad de cámaras: 6",null,null,null,"Cámaras: 6",{"interactive":false,"permanent":false,"direction":"top","opacity":1,"offset":[0,-5],"textsize":"12px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[-25.304816,-57.129486],13,[]],"limits":{"lat":[-25.304816,-25.304816],"lng":[-57.129486,-57.129486]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c5546ee037d38a8eeabe" style="width:100%;height:520px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c5546ee037d38a8eeabe">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addAwesomeMarkers","args":[-25.304816,-57.129486,{"icon":"camera","markerColor":"darkgreen","iconColor":"white","spin":false,"squareMarker":false,"iconRotate":0,"font":"monospace","prefix":"fa"},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<strong>Cerro Kavaju<\/strong><br>Ecorregión: Paraguay Central<br>Ecosistema: Bosque<br>Cantidad de cámaras: 6",null,null,null,"Cerro Kavaju · 6 cámaras",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[-25.304816,-57.129486],13,[]],"limits":{"lat":[-25.304816,-25.304816],"lng":[-57.129486,-57.129486]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-</section>
-</div>
-<div id="galeria">
-<section id="galería" class="level1">
+<!-- ======================================================
+     GALERÍA
+     ====================================================== -->
+
+<section id="galeria" class="section">
+
+<div class="container">
+
 <h1>Galería</h1>
-<div class="masonry">
-<p><img src="images/galeria_a.jpg" alt="Foto 1"> <img src="images/galeria_c.jpg" alt="Foto 2"> <img src="images/galeria4.jpg" alt="Foto 4"> <img src="images/galeria5.jpg" alt="Foto 5"> <img src="images/galeria_b.jpg" alt="Foto 6"> <img src="images/galeria_d.jpg" alt="Foto 7"></p>
+
+<div class="gallery">
+
+<img src="images/galeria_a.jpg" alt="Snapshot Paraguay">
+
+<img src="images/galeria_c.jpg" alt="Snapshot Paraguay">
+
+<img src="images/galeria4.jpg" alt="Snapshot Paraguay">
+
+<img src="images/galeria5.jpg" alt="Snapshot Paraguay">
+
+<img src="images/galeria_b.jpg" alt="Snapshot Paraguay">
+
+<img src="images/galeria_d.jpg" alt="Snapshot Paraguay">
+
 </div>
+
+</div>
+
 </section>
-</div>
-<section id="contacto" class="level1">
+
+
+<!-- ======================================================
+     CONTACTO
+     ====================================================== -->
+
+<section id="contacto" class="section contact-section">
+
+<div class="container">
+
 <h1>Contacto</h1>
-<p>📧 Email: <strong>snapshotparaguay@gmail.com</strong></p>
-</section>
-<div id="img-lightbox" class="img-lightbox">
-<p><img id="img-lightbox-img"></p>
+
+<p>
+📧 <strong>snapshotparaguay@gmail.com</strong>
+</p>
+
 </div>
+
+</section>
+
+
+<!-- ======================================================
+     LIGHTBOX
+     ====================================================== -->
+
+<div id="lightbox">
+<img id="lightbox-image" alt="Imagen ampliada">
+</div>
+
+
 <script>
-  // Efecto navbar con scroll
-  document.addEventListener("scroll", function() {
-    const navbar = document.querySelector(".navbar");
-    const hero   = document.querySelector(".hero");
+
+/* NAVBAR */
+
+document.addEventListener(
+  "scroll",
+  function() {
+
+    const navbar =
+      document.querySelector(".navbar");
+
+    const hero =
+      document.querySelector(".hero");
+
     if (!navbar || !hero) return;
 
-    const heroHeight = hero.offsetHeight;
+    if (
+      window.scrollY >
+      hero.offsetHeight - 80
+    ) {
 
-    if (window.scrollY > heroHeight - 80) {
-      navbar.classList.add("scrolled");
+      navbar.classList.add(
+        "scrolled"
+      );
+
     } else {
-      navbar.classList.remove("scrolled");
+
+      navbar.classList.remove(
+        "scrolled"
+      );
+
     }
-  });
 
-  // Lightbox sencillo para la galería
-  document.addEventListener("DOMContentLoaded", function() {
-    const lightbox = document.getElementById("img-lightbox");
-    const lightboxImg = document.getElementById("img-lightbox-img");
+  }
+);
 
-    // Todas las imágenes de la galería Masonry
-    document.querySelectorAll(".masonry img").forEach(function(img) {
-      img.style.cursor = "zoom-in";
-      img.addEventListener("click", function() {
-        lightboxImg.src = img.src;
-        lightbox.classList.add("open");
-      });
-    });
 
-    // Cerrar al hacer click en el fondo
-    lightbox.addEventListener("click", function() {
-      lightbox.classList.remove("open");
-    });
+/* GALERÍA */
 
-    // Cerrar con tecla Esc
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "Escape") {
-        lightbox.classList.remove("open");
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
+
+    const lightbox =
+      document.getElementById(
+        "lightbox"
+      );
+
+    const lightboxImage =
+      document.getElementById(
+        "lightbox-image"
+      );
+
+    if (
+      !lightbox ||
+      !lightboxImage
+    ) return;
+
+
+    document
+      .querySelectorAll(
+        ".gallery img"
+      )
+      .forEach(
+        function(img) {
+
+          img.addEventListener(
+            "click",
+            function() {
+
+              lightboxImage.src =
+                img.src;
+
+              lightbox.classList.add(
+                "open"
+              );
+
+            }
+          );
+
+        }
+      );
+
+
+    lightbox.addEventListener(
+      "click",
+      function() {
+
+        lightbox.classList.remove(
+          "open"
+        );
+
+        lightboxImage.src = "";
+
       }
-    });
-  });
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          lightbox.classList.remove(
+            "open"
+          );
+
+          lightboxImage.src = "";
+
+        }
+
+      }
+    );
+
+  }
+);
+
 </script>
 
 
-</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
